@@ -31,8 +31,8 @@ runs:
 
     - name: Upload bundle
       id: ftp
-      uses: bayssmekanique/action-simple-file-upload@v2
+      uses: bayssmekanique/action-simple-file-upload@master
       with:
         secure: true
-        src: zipfile
-        dest: releaseBundle.zip
+        src: zipfile/${{ github.event.repository.name }}.zip
+        dest: ${{ github.event.repository.name }}.zip
