@@ -31,3 +31,4 @@ runs:
 
     - name: ls
       run: ls
+      shell: bash
