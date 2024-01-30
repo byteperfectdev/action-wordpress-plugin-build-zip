@@ -11,7 +11,7 @@ SLUG=${GITHUB_REPOSITORY#*/}
 echo "ℹ︎ SLUG is $SLUG"
 
 SVN_DIR="${HOME}/svn-${SLUG}"
-cd "$SVN_DIR"
+mkdir "$SVN_DIR" && cd "$SVN_DIR"
 
 echo "➤ Copying files..."
 if [[ -e "$GITHUB_WORKSPACE/.distignore" ]]; then
