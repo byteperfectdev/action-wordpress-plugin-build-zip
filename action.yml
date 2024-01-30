@@ -34,5 +34,5 @@ runs:
       uses: bayssmekanique/action-simple-file-upload@v2.1.0
       with:
         secure: true
-        src: zipfile/${{ github.event.repository.name }}.zip
+        src: ${{ zipfile }}/${{ github.event.repository.name }}.zip
         dest: ${{ github.event.repository.name }}.zip
