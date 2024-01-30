@@ -28,3 +28,14 @@ runs:
         name: ${{ github.event.repository.name }}
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
+
+    - name: Upload bundle
+      id: ftp
+      uses: bayssmekanique/action-simple-file-upload@v2
+      with:
+      user: ${{ secrets.FTP_USER }}
+      password: ${{ secrets.FTP_PASSWORD }}
+      host: ${{ secrets.FTP_HOST }}
+      secure: true
+      src: zipfile
+      dest: releaseBundle.zip
