@@ -28,3 +28,6 @@ runs:
         name: ${{ github.event.repository.name }}
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
+
+    - name: ls
+      run: ls
