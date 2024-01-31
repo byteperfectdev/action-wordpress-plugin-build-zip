@@ -1,22 +1,26 @@
 name: 'WordPress Plugin Build Zip'
 description: 'Build a release zip of a WordPress Plugin'
-author: '10up'
-branding:
-  icon: 'archive'
-  color: 'blue'
-inputs:
-  retention-days:
-    description: 'How many days to keep the zip archive'
-    default: 5
+author: 'byteperfect.dev'
 runs:
   using: 'composite'
   steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build plugin
+      run: if test -f composer.json; then composer install --no-dev; fi;
+      shell: bash
+
     - name: Generate zip archive
       id: archive
       run: ${{ github.action_path }}/build-zip.sh
       shell: bash
 
-    - name: Unzip the archive (prevents double zip problem)
-      id: unzip
-      run: unzip ${{ github.event.repository.name }}.zip -d zipfile
-      shell: bash
+    - name: Copy file via SSH
+      uses: ilCollez/ssh-scp-deploy@v1.2.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        files: ${{ github.event.repository.name }}.zip
+        remote-path: ${{ secrets.PATH }}
