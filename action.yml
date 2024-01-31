@@ -20,15 +20,3 @@ runs:
       id: unzip
       run: unzip ${{ github.event.repository.name }}.zip -d zipfile
       shell: bash
-
-    - name: Upload the archive as an artifact
-      id: upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ github.event.repository.name }}
-        path: zipfile
-        retention-days: ${{ inputs.retention-days }}
-
-    - name: ls
-      run: ls
-      shell: bash
