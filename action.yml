@@ -1,6 +1,19 @@
 name: 'WordPress Plugin Build Zip'
 description: 'Build a release zip of a WordPress Plugin'
 author: 'byteperfect.dev'
+inputs:
+  host:
+    description: 'SSH host'
+    required: true
+  username:
+    description: 'SSH username'
+    required: true
+  password:
+    description: 'SSH password'
+    required: true
+  path:
+    description: 'SSH path'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -19,8 +32,8 @@ runs:
     - name: Copy file via SSH
       uses: ilCollez/ssh-scp-deploy@v1.2.0
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        host: ${{ inputs.host }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
         files: ${{ github.event.repository.name }}.zip
-        remote-path: ${{ secrets.PATH }}
+        remote-path: ${{ inputs.path }}
