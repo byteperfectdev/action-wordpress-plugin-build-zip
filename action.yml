@@ -8,18 +8,6 @@ inputs:
   retention-days:
     description: 'How many days to keep the zip archive'
     default: 5
-  username:
-    description: 'username'
-    default: ''
-  password:
-    description: 'password'
-    default: ''
-  host:
-    description: 'host'
-    default: ''
-  path:
-    description: 'path'
-    default: ''
 runs:
   using: 'composite'
   steps:
@@ -43,10 +31,4 @@ runs:
 
     - name: ls
       run: ls
-      shell: bash
-
-    - name: SCP
-      run: |
-        apt install -y sshpass
-        sshpass -p '${{ inputs.password }}' scp ${{ github.event.repository.name }}.zip ${{ inputs.username }}@${{ inputs.host }}:${{ inputs.path }}
       shell: bash
