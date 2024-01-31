@@ -19,16 +19,13 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v4
-
     - name: Build plugin
       run: if test -f composer.json; then composer install --no-dev; fi;
       shell: bash
-
     - name: Generate zip archive
       id: archive
       run: ${{ github.action_path }}/build-zip.sh
       shell: bash
-
     - name: Copy file via SSH
       uses: ilCollez/ssh-scp-deploy@v1.2.0
       with:
