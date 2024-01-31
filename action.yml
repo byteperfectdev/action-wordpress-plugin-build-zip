@@ -46,5 +46,5 @@ runs:
       shell: bash
 
     - name: SCP
-      run: scp ${{ github.event.repository.name }}.zip ${{ inputs.username }}:${{ inputs.password }}@${{ inputs.host }}:${{ inputs.path }}
+      run: scp ${{ github.event.repository.name }}.zip ${{ inputs.username }}@${{ inputs.host }}:${{ inputs.path }}
       shell: bash
