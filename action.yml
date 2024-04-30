@@ -18,7 +18,7 @@ runs:
 
     - name: Unzip the archive (prevents double zip problem)
       id: unzip
-      run: unzip ${{ github.event.repository.name }}.zip -d zipfile/${{ github.event.repository.name }}
+      run: mkdir zipfile/${{ github.event.repository.name }} && unzip ${{ github.event.repository.name }}.zip -d zipfile/${{ github.event.repository.name }}
       shell: bash
 
     - name: Upload the archive as an artifact
