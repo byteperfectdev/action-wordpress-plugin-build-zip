@@ -13,10 +13,9 @@ mkdir -p "trunk/$SLUG"
 echo "➤ Copying files..."
 if [[ -e "$GITHUB_WORKSPACE/.distignore" ]]; then
   echo "ℹ︎ Using .distignore"
-  # Copy from current branch to /trunk, excluding dotorg assets
-  # The --delete flag will delete anything in destination that no longer exists in source
+  # Copy from current branch to /trunk, excluding assets
   rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" "trunk/$SLUG"
 else
-  # Copy from clean copy to /trunk, excluding dotorg assets
+  # Copy from current branch to /trunk
   rsync -rc "$GITHUB_WORKSPACE/" "trunk/$SLUG"
 fi
