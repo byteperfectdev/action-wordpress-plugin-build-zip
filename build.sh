@@ -8,6 +8,8 @@ set -eo
 
 SLUG=${GITHUB_REPOSITORY#*/}
 
+composer install --prefer-dist --no-progress --no-suggest --no-dev
+
 mkdir -p "trunk/$SLUG"
 
 echo "➤ Copying files..."
